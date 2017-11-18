@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1 ファイルの登録
+  form(method="post", enctype="multipart/form-data", action="/")
+    input(type="file", name="uploadedfile")
+    input(type="submit")
+
+  h1 登録されているファイル
+  ul
+    for val in upFiles
+      li
+        a(href="upFiles/#{val}") #{val}
+
+
+  h1 変換後のファイル
+  ul
+    for val in convFiles
+      li
+        a(href="convFiles/#{val}") #{val}
+
