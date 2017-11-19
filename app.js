@@ -93,8 +93,13 @@ app.post('/', upload.single('uploadedfile'), function (req, res) {
       for (let colIndex = decodeRange.s.c; colIndex <= decodeRange.e.c; colIndex++) {
         var address = Utils.encode_cell({ r: rowIndex, c: colIndex });
         console.log(address);
-        var cell = sheet1[address];
-
+        // var cell = sheet1[address];
+        var cell = null;
+        if(!Array.isArray(sheet1)) {
+          cell = sheet1[address];
+        } else {
+          cell = (sheet1[address.r]||[])[address.c];
+        }
         // !! cell が取得できん！！
         console.log(cell);
 
